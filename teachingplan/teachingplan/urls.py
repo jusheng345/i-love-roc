@@ -2,5 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('up/', include('upload.urls')),
+    path('', include('upload.urls')),
+    path('documents/', include('documents.urls')),
 ]

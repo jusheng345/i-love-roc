@@ -6,6 +6,11 @@
 <body>
     <h1>學校日教學計畫上傳系統</h1>
     <h2>配課表</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ document_form.as_p }}
+        <button type="submit">Upload Document</button>
+    </form>    
     <table>
         <tr>
             <th>年級</th>

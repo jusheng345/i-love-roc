@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Grade, Teacher, Subject, Class, Course, Document
+from documents.forms import DocumentForm
+from documents.models import Document
 
 def index(request):
     grades = Grade.objects.all()
@@ -16,6 +18,15 @@ def index(request):
         'courses': courses,
         'documents': documents
     }
+    if request.method == 'POST':
+        document_form = DocumentForm(request.POST, request.FILES)
+        if document_form.is_valid():
+            document_form.save()
+            return redirect('index')
+    else:
+        document_form = DocumentForm()
+
+    context['document_form'] = document_form
     return render(request, 'index.html', context)
 
 def course_detail(request, course_id):
