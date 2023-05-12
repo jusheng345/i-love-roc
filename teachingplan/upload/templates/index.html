@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>學校日教學計畫上傳系統</title>
+</head>
+<body>
+    <h1>學校日教學計畫上傳系統</h1>
+    <h2>配課表</h2>
+    <table>
+        <tr>
+            <th>年級</th>
+            <th>班級</th>
+            <th>導師</th>
+            <th>課程</th>
+            <th>教師</th>
+        </tr>
+        {% for grade in grades %}
+            {% for class in grade.class_set.all %}
+                {% for course in class.courses.all %}
+                    <tr>
+                        <td>{{ grade.name }}</td>
+                        <td>{{ class.name }}</td>
+                        <td>{{ class.teacher }}</td>
+                        <td>{{ course.name }}</td>
+                        <td>{{ course.teacher }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+
+    <h2>教學計畫文件</h2>
+    <ul>
+        {% for document in documents %}
+            <li><a href="{% url 'course_detail' document.course.id %}">{{ document.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
