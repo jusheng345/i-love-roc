@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>教學計畫詳細資訊</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>教學計畫詳細資訊</h1>
     <h2>{{ course.subject }} - {{ course.name }}</h2>
     <h3>適用班級：</h3>
@@ -17,6 +14,8 @@
         {% for document in documents %}
             <li><a href="{{ document.file.url }}">{{ document.name }}</a></li>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </ul> 
+{% endblock content %}
+
+
+

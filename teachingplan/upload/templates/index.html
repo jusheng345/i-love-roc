@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>學校日教學計畫上傳系統</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>學校日教學計畫上傳系統</h1>
     <h2>配課表</h2>
+    <h3>Status:</h3>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ document_form.as_p }}
@@ -40,5 +38,4 @@
             <li><a href="{% url 'course_detail' document.course.id %}">{{ document.name }}</a></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
